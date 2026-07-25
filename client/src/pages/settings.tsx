@@ -813,7 +813,7 @@ function TestSmsSection({ centerId, userId }: { centerId: string; userId: string
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
           recipientPhone: recipientPhone.replace(/-/g, ""),
-          message: "문자 연결이 완료되었습니다. [이음위더스]"
+          message: "문자 연결이 완료되었습니다. [새결수학]"
         }),
       });
 
@@ -855,7 +855,7 @@ function TestSmsSection({ centerId, userId }: { centerId: string; userId: string
         </Button>
       </div>
       <p className="text-xs text-muted-foreground">
-        발송 내용: "문자 연결이 완료되었습니다. [이음위더스]"
+        발송 내용: "문자 연결이 완료되었습니다. [새결수학]"
       </p>
     </div>
   );

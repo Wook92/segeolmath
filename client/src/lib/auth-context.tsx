@@ -132,7 +132,7 @@ export function AuthProvider({ children: childrenProp }: { children: ReactNode }
     if (selectedCenter?.name) {
       document.title = `${selectedCenter.name} - 학원 통합 관리`;
     } else {
-      document.title = "이음위더스 - 학원 통합 관리";
+      document.title = "새결수학 - 학원 통합 관리";
     }
   }, [selectedCenter?.faviconUrl, selectedCenter?.name, selectedCenter?.id, selectedCenter?.updatedAt]);
 

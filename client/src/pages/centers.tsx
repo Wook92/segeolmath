@@ -1770,7 +1770,7 @@ export default function CentersPage() {
     centerCount?: number;
   } | null>(null);
   const [pendingApprovalRegistration, setPendingApprovalRegistration] = useState<CenterRegistration | null>(null);
-  const builtInDefaultSmsMessage = `[이음위더스] 학원 통합 관리 앱
+  const builtInDefaultSmsMessage = `[새결수학] 학원 통합 관리 앱
 안녕하세요. {원장명}님!
 등록 승인 완료되었습니다 😊
 

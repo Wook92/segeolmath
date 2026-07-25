@@ -186,7 +186,7 @@ export default function LoginPage() {
         <div className="flex flex-col items-center">
           <img 
             src={loginLogoUrl} 
-            alt="이음위더스 - 학원 통합관리 시스템" 
+            alt="새결수학 - 학원 통합관리 시스템" 
             className="h-40 w-auto" 
             data-testid="img-logo" 
           />

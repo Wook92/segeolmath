@@ -610,7 +610,7 @@ export default function FeatureManagementPage() {
   // Handle feature notification to centers (admin only)
   const handleNotifyFeature = (feature: Feature) => {
     setNotifyFeature(feature);
-    setNotifyMessage(`[이음위더스] 새로운 기능이 추가되었습니다!\n\n기능명: ${feature.name}\n${feature.description || ""}\n\n추가기능 메뉴에서 확인해주세요.`);
+    setNotifyMessage(`[새결수학] 새로운 기능이 추가되었습니다!\n\n기능명: ${feature.name}\n${feature.description || ""}\n\n추가기능 메뉴에서 확인해주세요.`);
     setNotifySelectedCenters([]);
     setIsNotifyDialogOpen(true);
   };
@@ -683,9 +683,9 @@ export default function FeatureManagementPage() {
     setSuggestionForSms(suggestion);
     
     if (type === "completed") {
-      setSuggestionSmsMessage(`[이음위더스] 기능 개발 완료 안내\n\n안녕하세요.\n요청하신 "${suggestion.title}" 기능 개발이 완료되었습니다.\n\n추가기능 메뉴에서 확인하시고 활성화해주세요.\n\n감사합니다.`);
+      setSuggestionSmsMessage(`[새결수학] 기능 개발 완료 안내\n\n안녕하세요.\n요청하신 "${suggestion.title}" 기능 개발이 완료되었습니다.\n\n추가기능 메뉴에서 확인하시고 활성화해주세요.\n\n감사합니다.`);
     } else {
-      setSuggestionSmsMessage(`[이음위더스] 기능 개발 요청 답변\n\n안녕하세요.\n요청하신 "${suggestion.title}"에 대한 답변입니다.\n\n(답변 내용을 입력해주세요)\n\n감사합니다.`);
+      setSuggestionSmsMessage(`[새결수학] 기능 개발 요청 답변\n\n안녕하세요.\n요청하신 "${suggestion.title}"에 대한 답변입니다.\n\n(답변 내용을 입력해주세요)\n\n감사합니다.`);
     }
     setIsSuggestionSmsDialogOpen(true);
   };

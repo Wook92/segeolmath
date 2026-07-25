@@ -1341,7 +1341,7 @@ export function AppSidebar({ side = "left" }: AppSidebarProps) {
               className="h-10 w-auto max-w-[120px] object-contain" 
             />
           ) : (
-            <img src={defaultSidebarLogoUrl} alt="이음위더스" className="h-10 w-auto" />
+            <img src={defaultSidebarLogoUrl} alt="새결수학" className="h-10 w-auto" />
           )}
         </div>
         {isKiosk ? (

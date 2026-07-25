@@ -163,7 +163,7 @@ function ProtectedRoutes() {
                     }
                     return url;
                   })()} 
-                  alt={selectedCenter?.name || "이음위더스"} 
+                  alt={selectedCenter?.name || "새결수학"} 
                   className="h-8 w-auto" 
                   data-testid="link-logo-home" 
                 />

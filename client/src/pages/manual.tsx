@@ -1501,7 +1501,7 @@ export default function ManualPage() {
               <BookOpen className="h-5 w-5" />
               {currentManual.title} 매뉴얼
             </h2>
-            <p className="text-xs text-muted-foreground mt-1">이음위더스 사용 안내서</p>
+            <p className="text-xs text-muted-foreground mt-1">새결수학 사용 안내서</p>
           </div>
           <ScrollArea className="flex-1">
             <div className="p-2 space-y-1">

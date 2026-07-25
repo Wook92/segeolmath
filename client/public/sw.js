@@ -110,7 +110,7 @@ self.addEventListener('push', (event) => {
   try {
     data = event.data.json();
   } catch (e) {
-    data = { title: '이음위더스', body: event.data.text() };
+    data = { title: '새결수학', body: event.data.text() };
   }
 
   const options = {
@@ -127,7 +127,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification(data.title || '이음위더스', options)
+    self.registration.showNotification(data.title || '새결수학', options)
   );
 });
 

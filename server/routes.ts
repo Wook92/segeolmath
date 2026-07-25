@@ -554,8 +554,8 @@ export async function registerRoutes(
       // Base manifest with version query for cache busting
       // Use dedicated PWA icon endpoints that properly resize images
       const manifest: any = {
-        name: "이음위더스 - 학원 통합관리 시스템",
-        short_name: "이음위더스",
+        name: "새결수학 - 학원 통합관리 시스템",
+        short_name: "새결수학",
         description: "학원 통합관리 시스템 - 수업 운영, 시간표, 숙제 관리, 평가 관리, 영상 제공",
         start_url: "/",
         display: "standalone",
@@ -629,8 +629,8 @@ export async function registerRoutes(
       res.setHeader('Content-Type', 'application/manifest+json');
       res.setHeader('Cache-Control', 'no-cache');
       res.json({
-        name: "이음위더스 - 학원 통합관리 시스템",
-        short_name: "이음위더스",
+        name: "새결수학 - 학원 통합관리 시스템",
+        short_name: "새결수학",
         start_url: "/",
         display: "standalone",
         icons: [{ src: "/logo.png", sizes: "192x192", type: "image/png" }]
@@ -3534,7 +3534,7 @@ export async function registerRoutes(
         if (shouldSendSms) {
           try {
             const centerUsers = await storage.getCenterUsers(req.params.centerId, UserRole.PRINCIPAL);
-            const smsText = `안녕하세요. 학원 통합관리 어플 이음위더스입니다.\n\n교육비 결제 승인이 완료되었습니다.\n이제 교육비 비대면 결제가 가능합니다!\n\n감사합니다`;
+            const smsText = `안녕하세요. 학원 통합관리 어플 새결수학입니다.\n\n교육비 결제 승인이 완료되었습니다.\n이제 교육비 비대면 결제가 가능합니다!\n\n감사합니다`;
             const { sendSystemSms } = await import("./services/solapi");
             for (const principal of centerUsers) {
               if (principal.phone) {
@@ -13083,7 +13083,7 @@ export async function registerRoutes(
       // Send SMS notification
       const smsResult = await sendSms({
         to: featureRequest.phoneNumber,
-        text: `요청하신 기능 완성되었습니다. [이음위더스]`,
+        text: `요청하신 기능 완성되었습니다. [새결수학]`,
         centerName,
         centerId: featureRequest.centerId,
       });
@@ -16745,7 +16745,7 @@ export async function registerRoutes(
       const center = await storage.getCenter(centerId);
       const result = await sendSms({
         to: userPhone,
-        text: "[이음위더스] 문자 연결 완료 되었습니다.",
+        text: "[새결수학] 문자 연결 완료 되었습니다.",
         centerName: center?.name,
         centerId,
       });
@@ -16785,7 +16785,7 @@ export async function registerRoutes(
       const center = await storage.getCenter(centerId);
       const result = await sendSms({
         to: recipientPhone,
-        text: message || "문자 연결이 완료되었습니다. [이음위더스]",
+        text: message || "문자 연결이 완료되었습니다. [새결수학]",
         centerName: center?.name,
         centerId,
       });

@@ -639,7 +639,7 @@ export default function AttendancePadPage() {
                 }
                 return defaultLogoUrl;
               })()}
-              alt={selectedCenter?.name || "이음위더스"} 
+              alt={selectedCenter?.name || "새결수학"} 
               className="h-12 sm:h-[7.5rem] landscape:h-24 w-auto mx-auto mb-1 sm:mb-4 landscape:mb-4" 
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
