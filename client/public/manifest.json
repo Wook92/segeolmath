@@ -1,0 +1,27 @@
+{
+  "name": "이음위더스 - 학원 통합관리 시스템",
+  "short_name": "이음위더스",
+  "description": "학원 통합관리 시스템 - 수업 운영, 시간표, 숙제 관리, 평가 관리, 영상 제공",
+  "start_url": "/attendance-pad",
+  "scope": "/",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
+  "background_color": "#FFFFFF",
+  "theme_color": "#1E3A5F",
+  "orientation": "landscape",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

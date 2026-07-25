@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "rzasEBgJ6rAFecICRaSsl"
+uri = "file://사업계획서.md"
+type = "text"
+title = "학원 통합 관리 시스템 사업계획서"

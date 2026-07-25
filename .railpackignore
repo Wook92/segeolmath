@@ -1,0 +1,8 @@
+attached_assets
+.git
+.local
+.cache
+.canvas
+tmp
+*.tar.gz
+.DS_Store

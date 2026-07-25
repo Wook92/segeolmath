@@ -1,0 +1,60 @@
+modules = ["nodejs-20", "web", "javascript", "python-3.11", "postgresql-16"]
+run = "npm run dev"
+hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["imagemagick"]
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
+localPort = 5904
+externalPort = 80
+
+[env]
+PORT = "5000"
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["node", "./dist/index.cjs"]
+build = ["npm", "run", "build"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[agent]
+integrations = ["javascript_openai_ai_integrations:2.0.0", "javascript_object_storage:2.0.0"]
+
+[userenv]
+
+[userenv.shared]
+NODE_OPTIONS = "--max-old-space-size=4096"
+R2_ACCOUNT_ID = "9ebf09e36fc2b3b9ae555c07fb0c1f44"
+R2_ACCESS_KEY_ID = "bc6c23951277769388cc0902a4c52c49"
+R2_SECRET_ACCESS_KEY = "1333c8296cb35df053cd7465a07afbc0bff6f2d51b3f701b9c22ee003d3b53cc"
+R2_BUCKET_NAME = "primemath-homework"
+R2_PUBLIC_URL = "https://pub-b68f838ebd2342c78da900415a5db7d1.r2.dev"
+VAPID_PUBLIC_KEY = "BFTXaQ1BoAbkzl1L3QCOT5tsb6pv7RqRNJEOrg4_YPcscnb_WCwPf7IO8f7eTBq8yZyBBtkn9NaBNVLoz1BrKj4"
+VAPID_PRIVATE_KEY = "0iYw-1rnrKR2WK_QNakyIcO3QMgYXHLax9jvAOHZz2o"
+VITE_TOSS_CLIENT_KEY = "live_ck_AQ92ymxN34gAOaBbeD448ajRKXvd"

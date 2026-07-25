@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>이음위더스 - 학원 통합 관리</title>
+    <meta name="description" content="학원 통합관리 시스템 - 수업 운영, 시간표, 숙제 관리, 평가 관리, 영상 제공" />
+    <link rel="icon" type="image/png" href="/default-favicon.png" id="dynamic-favicon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/default-favicon.png" id="dynamic-apple-icon" />
+    <link rel="manifest" href="/api/manifest" />
+    <meta name="theme-color" content="#1E3A5F" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="이음위더스" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then((registration) => {
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  newWorker.postMessage({ type: 'SKIP_WAITING' });
+                  window.location.reload();
+                }
+              });
+            });
+          });
+          
+          let refreshing = false;
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+              refreshing = true;
+              window.location.reload();
+            }
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
