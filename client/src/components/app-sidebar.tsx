@@ -1343,6 +1343,7 @@ export function AppSidebar({ side = "left" }: AppSidebarProps) {
           ) : (
             <img src={defaultSidebarLogoUrl} alt="새결수학" className="h-10 w-auto" />
           )}
+          <span className="font-bold text-lg text-sidebar-foreground">새결수학</span>
         </div>
         {isKiosk ? (
           <div className="flex items-center gap-3">
