@@ -6339,7 +6339,7 @@ export async function seedDatabase(): Promise<void> {
 
   const [admin] = await db.insert(users).values({
     username: "admin",
-    password: "1234",
+    password: "5133",
     name: "관리자",
     phone: "01000000000",
     role: UserRole.ADMIN,
