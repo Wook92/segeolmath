@@ -6543,6 +6543,7 @@ export async function seedDatabase(): Promise<void> {
 
   await db.insert(textbooks).values({
     title: "수학의 정석",
+    centerId: dmcCenter.id,
     isVisible: true,
   });
 }
