@@ -14649,7 +14649,7 @@ export async function registerRoutes(
       
       const clientId = process.env.GOOGLE_CLIENT_ID;
       const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-      const redirectUri = `${process.env.PUBLIC_URL || 'https://' + (process.env.REPL_SLUG || 'academy') + '.replit.app'}/api/google-calendar/callback`;
+      const redirectUri = `${process.env.PUBLIC_URL || 'http://localhost:5000'}/api/google-calendar/callback`;
       
       if (!clientId || !clientSecret) {
         return res.status(400).json({ error: "Google OAuth가 설정되지 않았습니다" });
@@ -14684,7 +14684,7 @@ export async function registerRoutes(
       
       const clientId = process.env.GOOGLE_CLIENT_ID;
       const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-      const redirectUri = `${process.env.PUBLIC_URL || 'https://' + (process.env.REPL_SLUG || 'academy') + '.replit.app'}/api/google-calendar/callback`;
+      const redirectUri = `${process.env.PUBLIC_URL || 'http://localhost:5000'}/api/google-calendar/callback`;
       
       const oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUri);
       
