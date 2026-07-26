@@ -86,7 +86,6 @@ const scheduleUrls = scheduleItems.map(item => item.url);
 
 const parentPortalItems = [
   { title: "문자 전송", url: "/contact-parents", icon: MessageSquare, menuKey: "contact-parents" },
-  { title: "교육비", url: "/tuition", icon: DollarSign, menuKey: "tuition" },
   { title: "교사소통", url: "/teacher-communication", icon: MessageCircle, menuKey: "teacher-communication" },
   { title: "알림장", url: "/daily-notices", icon: Bell, menuKey: "daily-notices" },
 ];
@@ -110,7 +109,6 @@ const kioskMenuItems = [
 const parentMenuItems = [
   { title: "홈", url: "/", icon: Home },
   { title: "알림장", url: "/daily-notices", icon: Bell },
-  { title: "교육비", url: "/tuition", icon: DollarSign },
   { title: "설정", url: "/settings", icon: Settings },
 ];
 
@@ -118,7 +116,6 @@ const studentMenuItems = [
   { title: "홈", url: "/", icon: Home },
   { title: "알림장", url: "/daily-notices", icon: Bell },
   { title: "교사소통", url: "/teacher-communication", icon: MessageCircle, menuKey: "teacher-communication" },
-  { title: "교육비", url: "/tuition", icon: DollarSign },
   { title: "설정", url: "/settings", icon: Settings },
 ];
 
@@ -1591,27 +1588,6 @@ export function AppSidebar({ side = "left" }: AppSidebarProps) {
       </SidebarContent>
 
       <SidebarFooter className="border-t border-sidebar-border p-2">
-        {(user.role >= UserRole.PRINCIPAL) && (
-          <Link href="/feature-management">
-            <SidebarMenuButton 
-              className="w-full justify-start"
-              data-testid="button-feature-management"
-            >
-              <PlusCircle className="w-4 h-4 mr-2" />
-              <span>추가 기능 메뉴</span>
-              {user.role >= UserRole.ADMIN && pendingFeatureRequestCount.count > 0 && (
-                <span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-[10px] font-medium text-destructive-foreground">
-                  {pendingFeatureRequestCount.count}
-                </span>
-              )}
-              {user.role === UserRole.PRINCIPAL && featureManagementNotificationCount > 0 && (
-                <span className="ml-auto flex h-5 min-w-5 px-1 items-center justify-center rounded-full bg-destructive text-[10px] font-medium text-destructive-foreground">
-                  {featureManagementNotificationCount}
-                </span>
-              )}
-            </SidebarMenuButton>
-          </Link>
-        )}
       </SidebarFooter>
       
       {/* Approval notification popup for principals */}

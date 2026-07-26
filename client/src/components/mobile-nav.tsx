@@ -59,7 +59,6 @@ const studentClassMenuKeys = studentClassItems.map(item => item.menuKey);
 const studentParentItems = [
   { title: "알림장", url: "/daily-notices", icon: Bell, menuKey: "daily-notices" },
   { title: "교사소통", url: "/teacher-communication", icon: MessageCircle, menuKey: "teacher-communication" },
-  { title: "교육비", url: "/tuition", icon: DollarSign, menuKey: "tuition" },
 ];
 const studentParentMenuKeys = studentParentItems.map(item => item.menuKey);
 
@@ -117,7 +116,6 @@ const staffParentItems = [
   { title: "알림장", url: "/daily-notices", icon: Bell, menuKey: "daily-notices" },
   { title: "교사소통", url: "/teacher-communication", icon: MessageCircle, menuKey: "teacher-communication" },
   { title: "월간보고서", url: "/student-reports", icon: FileBarChart, menuKey: "student-reports" },
-  { title: "교육비", url: "/tuition", icon: DollarSign, menuKey: "tuition" },
 ];
 const staffParentUrls = staffParentItems.map(item => item.url);
 
@@ -125,7 +123,6 @@ const staffParentUrls = staffParentItems.map(item => item.url);
 const parentAllItems = [
   { title: "홈", url: "/", icon: Home },
   { title: "알림장", url: "/daily-notices", icon: Bell },
-  { title: "교육비", url: "/tuition", icon: DollarSign },
   { title: "설정", url: "/settings", icon: Settings },
 ];
 
@@ -532,7 +529,6 @@ export function MobileNav() {
       { title: "사용자", url: "/users", icon: Users },
       { title: "센터", url: "/centers", icon: Building2 },
       { title: "스터디카페", url: "/study-cafe", icon: Coffee, menuKey: "study-cafe" },
-      { title: "추가기능", url: "/feature-management", icon: PlusCircle },
       { title: "설정", url: "/settings", icon: Settings },
     ] : isAdmin ? [
       timetableItem,
@@ -540,7 +536,6 @@ export function MobileNav() {
       { title: "사용자", url: "/users", icon: Users },
       { title: "센터", url: "/centers", icon: Building2 },
       { title: "스터디카페", url: "/study-cafe", icon: Coffee, menuKey: "study-cafe" },
-      { title: "추가기능", url: "/feature-management", icon: PlusCircle },
       { title: "설정", url: "/settings", icon: Settings },
     ] : [
       timetableItem,
