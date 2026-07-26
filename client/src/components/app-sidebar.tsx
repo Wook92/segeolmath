@@ -65,7 +65,7 @@ import { CenterSelector } from "@/components/center-selector";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAuth } from "@/lib/auth-context";
 import { UserRole } from "@shared/schema";
-const defaultSidebarLogoUrl = "/default-sidebar-logo.png";
+import defaultSidebarLogoUrl from "/default-sidebar-logo.png";
 
 const classManagementItems = [
   { title: "출결 관리", url: "/attendance", icon: UserCheck },

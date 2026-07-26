@@ -4004,16 +4004,10 @@ export default function SettingsPage() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className={`grid w-full ${user?.role === 4 ? "grid-cols-4" : isAdminOrPrincipal ? "grid-cols-3" : "grid-cols-1"}`}>
+        <TabsList className={`grid w-full ${user?.role === 4 ? "grid-cols-2" : "grid-cols-1"}`}>
           <TabsTrigger value="general" data-testid="tab-general">일반</TabsTrigger>
-          {isAdminOrPrincipal && (
-            <TabsTrigger value="sms" data-testid="tab-sms">문자</TabsTrigger>
-          )}
           {user?.role === 4 && (
             <TabsTrigger value="charge" data-testid="tab-charge">충전</TabsTrigger>
-          )}
-          {isAdminOrPrincipal && (
-            <TabsTrigger value="payment" data-testid="tab-payment">결제</TabsTrigger>
           )}
         </TabsList>
 
@@ -4317,9 +4311,6 @@ export default function SettingsPage() {
             <CenterLogoManager userId={user?.id} center={selectedCenter} refreshCenters={refreshCenters} />
           )}
 
-          {isPrincipal && selectedCenter && (
-            <BugReportDialog centerId={selectedCenter.id} />
-          )}
         </TabsContent>
 
         {/* 문자 탭 - 원장/관리자만 */}
