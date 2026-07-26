@@ -4106,6 +4106,8 @@ export default function UsersPage() {
   }, [consultationsList, users, searchQuery]);
 
   const filteredUsers = (displayUsers?.filter((u) => {
+    // 관리자 계정은 관리자 본인만 볼 수 있음
+    if (u.role === UserRole.ADMIN && !isAdmin) return false;
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       const nameMatch = u.name.toLowerCase().includes(query);

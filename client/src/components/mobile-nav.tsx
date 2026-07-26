@@ -369,9 +369,8 @@ export function MobileNav() {
         });
     const dynamicItems = features
       .filter(f =>
-        f.featureType === "optional" &&
         f.parentMenuKey === "class-management" &&
-        enabledFeatureIds.includes(f.id) &&
+        (f.featureType === "basic" || enabledFeatureIds.includes(f.id)) &&
         !classManagementItemsBase.some(item => item.menuKey === f.menuKey)
       )
       .map(f => ({
@@ -446,9 +445,8 @@ export function MobileNav() {
     // 동적으로 활성화된 class-management 기능들 추가
     const dynamicItems = features
       .filter(f => 
-        f.featureType === "optional" && 
         f.parentMenuKey === "class-management" && 
-        enabledFeatureIds.includes(f.id) &&
+        (f.featureType === "basic" || enabledFeatureIds.includes(f.id)) &&
         !studentClassItems.some(item => item.menuKey === f.menuKey) // 중복 방지
       )
       .map(f => ({

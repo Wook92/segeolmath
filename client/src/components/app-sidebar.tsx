@@ -563,11 +563,15 @@ export function AppSidebar({ side = "left" }: AppSidebarProps) {
 
   // Get enabled optional features grouped by parentMenuKey
   const optionalFeaturesByParent = useMemo(() => {
-    const optionalFeatures = features.filter(f => f.featureType === "optional");
+    // Include optional features + basic features that belong to a submenu (not top-level)
+    const candidateFeatures = features.filter(f =>
+      f.featureType === "optional" ||
+      (f.featureType === "basic" && f.parentMenuKey && f.parentMenuKey !== "top-level")
+    );
     const isAdmin = (user?.role ?? 0) >= UserRole.ADMIN;
     const enabledFeatures = isAdmin
-      ? optionalFeatures
-      : optionalFeatures.filter(f => enabledFeatureIds.includes(f.id));
+      ? candidateFeatures
+      : candidateFeatures.filter(f => f.featureType === "basic" || enabledFeatureIds.includes(f.id));
     
     
     const grouped: Record<string, Feature[]> = {
