@@ -1030,16 +1030,7 @@ export class DatabaseStorage implements IStorage {
 
   async getCenters(): Promise<Center[]> {
     const allCenters = await db.select().from(centers);
-    // Sort: DMC센터 and 목동센터 first (fixed at top), then others alphabetically
-    const priorityCenters = ["DMC센터", "목동센터"];
-    return allCenters.sort((a, b) => {
-      const aIndex = priorityCenters.indexOf(a.name);
-      const bIndex = priorityCenters.indexOf(b.name);
-      if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
-      if (aIndex !== -1) return -1;
-      if (bIndex !== -1) return 1;
-      return a.name.localeCompare(b.name, 'ko');
-    });
+    return allCenters.sort((a, b) => a.name.localeCompare(b.name, 'ko'));
   }
 
   async createCenter(center: InsertCenter): Promise<Center> {
@@ -6334,8 +6325,7 @@ export async function seedDatabase(): Promise<void> {
     return;
   }
 
-  const [dmcCenter] = await db.insert(centers).values({ name: "DMC센터" }).returning();
-  const [mokdongCenter] = await db.insert(centers).values({ name: "목동센터" }).returning();
+  const [center] = await db.insert(centers).values({ name: "새결수학" }).returning();
 
   const [admin] = await db.insert(users).values({
     username: "admin",
@@ -6344,208 +6334,7 @@ export async function seedDatabase(): Promise<void> {
     phone: "01000000000",
     role: UserRole.ADMIN,
   }).returning();
-  await db.insert(userCenters).values({ userId: admin.id, centerId: dmcCenter.id });
-  await db.insert(userCenters).values({ userId: admin.id, centerId: mokdongCenter.id });
-
-  const [principal] = await db.insert(users).values({
-    username: "01011111111",
-    password: "1234",
-    name: "김원장",
-    phone: "01011111111",
-    role: UserRole.PRINCIPAL,
-  }).returning();
-  await db.insert(userCenters).values({ userId: principal.id, centerId: dmcCenter.id });
-
-  const [teacher] = await db.insert(users).values({
-    username: "01022222222",
-    password: "1234",
-    name: "이선생",
-    phone: "01022222222",
-    role: UserRole.TEACHER,
-  }).returning();
-  await db.insert(userCenters).values({ userId: teacher.id, centerId: dmcCenter.id });
-
-  const [student1] = await db.insert(users).values({
-    username: "01033333333",
-    password: "1234",
-    name: "박학생",
-    phone: "01033333333",
-    motherPhone: "01055555555",
-    fatherPhone: "01066666666",
-    school: "서울초등학교",
-    grade: "초6",
-    role: UserRole.STUDENT,
-  }).returning();
-  await db.insert(userCenters).values({ userId: student1.id, centerId: dmcCenter.id });
-
-  const [student2] = await db.insert(users).values({
-    username: "01044444444",
-    password: "1234",
-    name: "최학생",
-    phone: "01044444444",
-    motherPhone: "01077777777",
-    school: "목동중학교",
-    grade: "중2",
-    role: UserRole.STUDENT,
-  }).returning();
-  await db.insert(userCenters).values({ userId: student2.id, centerId: dmcCenter.id });
-
-  const [teacher2] = await db.insert(users).values({
-    username: "01066666666",
-    password: "1234",
-    name: "김수학",
-    phone: "01066666666",
-    role: UserRole.TEACHER,
-  }).returning();
-  await db.insert(userCenters).values({ userId: teacher2.id, centerId: dmcCenter.id });
-
-  const [student3] = await db.insert(users).values({
-    username: "01077777777",
-    password: "1234",
-    name: "정학생",
-    phone: "01077777777",
-    school: "DMC고등학교",
-    grade: "고1",
-    role: UserRole.STUDENT,
-  }).returning();
-  await db.insert(userCenters).values({ userId: student3.id, centerId: dmcCenter.id });
-
-  const [principal2] = await db.insert(users).values({
-    username: "01088888888",
-    password: "1234",
-    name: "박원장",
-    phone: "01088888888",
-    role: UserRole.PRINCIPAL,
-  }).returning();
-  await db.insert(userCenters).values({ userId: principal2.id, centerId: mokdongCenter.id });
-
-  const [teacherMok1] = await db.insert(users).values({
-    username: "01091111111",
-    password: "1234",
-    name: "최선생",
-    phone: "01091111111",
-    role: UserRole.TEACHER,
-  }).returning();
-  await db.insert(userCenters).values({ userId: teacherMok1.id, centerId: mokdongCenter.id });
-
-  const [teacherMok2] = await db.insert(users).values({
-    username: "01092222222",
-    password: "1234",
-    name: "한선생",
-    phone: "01092222222",
-    role: UserRole.TEACHER,
-  }).returning();
-  await db.insert(userCenters).values({ userId: teacherMok2.id, centerId: mokdongCenter.id });
-
-  const [studentMok1] = await db.insert(users).values({
-    username: "01093333333",
-    password: "1234",
-    name: "이학생",
-    phone: "01093333333",
-    role: UserRole.STUDENT,
-  }).returning();
-  await db.insert(userCenters).values({ userId: studentMok1.id, centerId: mokdongCenter.id });
-
-  const [studentMok2] = await db.insert(users).values({
-    username: "01094444444",
-    password: "1234",
-    name: "강학생",
-    phone: "01094444444",
-    role: UserRole.STUDENT,
-  }).returning();
-  await db.insert(userCenters).values({ userId: studentMok2.id, centerId: mokdongCenter.id });
-
-  const [mathClass] = await db.insert(classes).values({
-    name: "수학 A반",
-    subject: "수학",
-    classType: "regular",
-    teacherId: teacher.id,
-    centerId: dmcCenter.id,
-    classroom: "A101",
-    days: ["mon", "wed", "fri"],
-    startTime: "14:00",
-    endTime: "16:00",
-    color: "#3B82F6",
-  }).returning();
-
-  const [englishClass] = await db.insert(classes).values({
-    name: "영어 기초반",
-    subject: "영어",
-    classType: "regular",
-    teacherId: teacher.id,
-    centerId: dmcCenter.id,
-    classroom: "B202",
-    days: ["tue", "thu"],
-    startTime: "16:00",
-    endTime: "18:00",
-    color: "#10B981",
-  }).returning();
-
-  const [testClass] = await db.insert(classes).values({
-    name: "수학 평가",
-    subject: "수학",
-    classType: "assessment",
-    teacherId: teacher.id,
-    centerId: dmcCenter.id,
-    classroom: "A101",
-    days: ["sat"],
-    startTime: "10:00",
-    endTime: "12:00",
-    color: "#EF4444",
-  }).returning();
-
-  const [mokMathClass] = await db.insert(classes).values({
-    name: "수학 심화반",
-    subject: "심화반",
-    classType: "regular",
-    teacherId: teacherMok1.id,
-    centerId: mokdongCenter.id,
-    classroom: "101호",
-    days: ["mon", "wed"],
-    startTime: "15:00",
-    endTime: "17:00",
-    color: "#1E3A5F",
-  }).returning();
-
-  const [mokBasicClass] = await db.insert(classes).values({
-    name: "수학 기초반",
-    subject: "기초반",
-    classType: "regular",
-    teacherId: teacherMok2.id,
-    centerId: mokdongCenter.id,
-    classroom: "102호",
-    days: ["tue", "thu"],
-    startTime: "14:00",
-    endTime: "16:00",
-    color: "#8B2942",
-  }).returning();
-
-  await db.insert(enrollments).values({ studentId: studentMok1.id, classId: mokMathClass.id });
-  await db.insert(enrollments).values({ studentId: studentMok2.id, classId: mokBasicClass.id });
-  await db.insert(enrollments).values({ studentId: student1.id, classId: mathClass.id });
-  await db.insert(enrollments).values({ studentId: student1.id, classId: englishClass.id });
-  await db.insert(enrollments).values({ studentId: student2.id, classId: mathClass.id });
-  await db.insert(enrollments).values({ studentId: student1.id, classId: testClass.id });
-  await db.insert(enrollments).values({ studentId: student2.id, classId: testClass.id });
-  await db.insert(enrollments).values({ studentId: student3.id, classId: testClass.id });
-
-  await db.insert(homework).values({
-    classId: mathClass.id,
-    title: "교과서 32~35페이지 풀어오세요",
-    dueDate: new Date().toISOString().split("T")[0],
-  });
-
-  await db.insert(homework).values({
-    classId: englishClass.id,
-    title: "단어 암기 Day 5 테스트 준비하세요",
-    dueDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
-  });
-
-  await db.insert(textbooks).values({
-    title: "수학의 정석",
-    centerId: dmcCenter.id,
-    isVisible: true,
-  });
+  await db.insert(userCenters).values({ userId: admin.id, centerId: center.id });
 }
 
 // Check if defaults have been initialized (use system_settings table)
