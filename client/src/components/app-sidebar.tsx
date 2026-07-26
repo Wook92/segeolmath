@@ -549,6 +549,9 @@ export function AppSidebar({ side = "left" }: AppSidebarProps) {
       hidden.add("google-calendar-timetable"); // Hides "나의 시간표" when feature not enabled
     }
     
+    // 교육비 안내 메뉴 비활성화
+    hidden.add("tuition");
+    
     return hidden;
   }, [features, hiddenFeatureIds, isGoogleCalendarTimetableEnabled]);
 
