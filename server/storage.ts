@@ -6616,7 +6616,7 @@ export async function ensureDefaultFeatures(): Promise<void> {
       menuKey: "homework",
       parentMenuKey: "class-management",
       categoryId: "cat-class-mgmt",
-      featureType: "optional" as const,
+      featureType: "basic" as const,
       displayOrder: 105,
     },
     {
@@ -6803,7 +6803,7 @@ export async function ensureMissingFeatures(): Promise<void> {
     { name: "교재 영상", menuKey: "textbooks-videos", featureType: "optional" as const, displayOrder: 102, categoryId: "cat-class-mgmt", parentMenuKey: "class-management" },
     { name: "월간보고서", menuKey: "student-reports", featureType: "optional" as const, displayOrder: 103, categoryId: "cat-parent", parentMenuKey: "parent-portal" },
     { name: "클리닉", menuKey: "clinic", featureType: "optional" as const, displayOrder: 104, categoryId: "cat-class-mgmt", parentMenuKey: "class-management" },
-    { name: "숙제 (사진검사)", menuKey: "homework", featureType: "optional" as const, displayOrder: 105, categoryId: "cat-class-mgmt", parentMenuKey: "class-management" },
+    { name: "숙제 (사진검사)", menuKey: "homework", featureType: "basic" as const, displayOrder: 105, categoryId: "cat-class-mgmt", parentMenuKey: "class-management" },
     { name: "주간평가", menuKey: "assessments", featureType: "optional" as const, displayOrder: 106, categoryId: "cat-class-mgmt", parentMenuKey: "class-management" },
     { name: "숙제 (대면검사)", menuKey: "face-to-face-checks", featureType: "optional" as const, displayOrder: 107, categoryId: "cat-class-mgmt", parentMenuKey: "class-management" },
     { name: "발표영상", menuKey: "presentation-videos", featureType: "optional" as const, displayOrder: 108, categoryId: "cat-class-mgmt", parentMenuKey: "class-management" },
