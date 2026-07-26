@@ -6337,6 +6337,50 @@ export async function seedDatabase(): Promise<void> {
   await db.insert(userCenters).values({ userId: admin.id, centerId: center.id });
 }
 
+// Ensure the admin user always exists (runs on every startup)
+export async function ensureAdminUser(): Promise<void> {
+  try {
+    const existing = await db.select().from(users).where(eq(users.username, "admin")).limit(1);
+    if (existing.length > 0) {
+      // Admin exists — make sure password matches
+      if (existing[0].password !== "5133") {
+        await db.update(users).set({ password: "5133" }).where(eq(users.username, "admin"));
+        console.log("[ADMIN] Admin password reset to default");
+      }
+      // Make sure admin is linked to at least one center
+      const existingCenters = await db.select().from(centers).limit(1);
+      if (existingCenters.length > 0) {
+        const linked = await db.select().from(userCenters)
+          .where(eq(userCenters.userId, existing[0].id)).limit(1);
+        if (linked.length === 0) {
+          await db.insert(userCenters).values({ userId: existing[0].id, centerId: existingCenters[0].id });
+          console.log("[ADMIN] Admin linked to center");
+        }
+      }
+      return;
+    }
+
+    // Admin doesn't exist — create it
+    const existingCenters = await db.select().from(centers).limit(1);
+    if (existingCenters.length === 0) {
+      // No centers yet; seedDatabase will handle everything
+      return;
+    }
+
+    const [admin] = await db.insert(users).values({
+      username: "admin",
+      password: "5133",
+      name: "관리자",
+      phone: "01000000000",
+      role: UserRole.ADMIN,
+    }).returning();
+    await db.insert(userCenters).values({ userId: admin.id, centerId: existingCenters[0].id });
+    console.log("[ADMIN] Admin user created");
+  } catch (err: any) {
+    console.error("[ADMIN] ensureAdminUser error:", err?.message);
+  }
+}
+
 // Check if defaults have been initialized (use system_settings table)
 async function isDefaultsInitialized(): Promise<boolean> {
   try {

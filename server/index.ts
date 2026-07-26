@@ -3,7 +3,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
-import { seedDatabase, ensureDefaultFeatures, ensureMissingFeatures, storage } from "./storage";
+import { seedDatabase, ensureDefaultFeatures, ensureMissingFeatures, ensureAdminUser, storage } from "./storage";
 import { runMigrations } from "./db";
 import * as fs from "fs";
 import * as path from "path";
@@ -300,6 +300,7 @@ async function initializeApp() {
     console.log("[INIT] Starting initialization...");
     await runMigrations();
     await seedDatabase();
+    await ensureAdminUser();
     await ensureDefaultFeatures();
     await ensureMissingFeatures();
     await registerRoutes(httpServer, app);
