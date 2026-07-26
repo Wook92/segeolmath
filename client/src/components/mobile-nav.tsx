@@ -533,7 +533,6 @@ export function MobileNav() {
       { title: "센터", url: "/centers", icon: Building2 },
       { title: "스터디카페", url: "/study-cafe", icon: Coffee, menuKey: "study-cafe" },
       { title: "추가기능", url: "/feature-management", icon: PlusCircle },
-      { title: "잔액충전", url: "/sms-credit-charge", icon: Wallet },
       { title: "설정", url: "/settings", icon: Settings },
     ] : isAdmin ? [
       timetableItem,
@@ -542,7 +541,6 @@ export function MobileNav() {
       { title: "센터", url: "/centers", icon: Building2 },
       { title: "스터디카페", url: "/study-cafe", icon: Coffee, menuKey: "study-cafe" },
       { title: "추가기능", url: "/feature-management", icon: PlusCircle },
-      { title: "잔액충전", url: "/sms-credit-charge", icon: Wallet },
       { title: "설정", url: "/settings", icon: Settings },
     ] : [
       timetableItem,

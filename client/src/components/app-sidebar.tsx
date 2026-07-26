@@ -1572,21 +1572,6 @@ export function AppSidebar({ side = "left" }: AppSidebarProps) {
                   </SidebarMenuItem>
                 );
               })}
-              {/* SMS Credit Charge - only for principal and above */}
-              {user.role >= UserRole.PRINCIPAL && (
-                <SidebarMenuItem key="sms-credit-charge">
-                  <SidebarMenuButton
-                    asChild
-                    isActive={location === "/sms-credit-charge"}
-                    data-testid="nav-sms-credit-charge"
-                  >
-                    <Link href="/sms-credit-charge">
-                      <Wallet className="h-4 w-4" />
-                      <span>잔액충전</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              )}
               {/* Settings menu - always at the bottom */}
               <SidebarMenuItem key="settings">
                 <SidebarMenuButton
